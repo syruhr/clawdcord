@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --discord-dark: #1e1f22;
+  --discord-darker: #111214;
+  --discord-channel-bg: #2b2d31;
+  --discord-chat-bg: #313338;
+  --discord-hover: #35373c;
+  --discord-text: #f2f3f5;
+  --discord-muted: #949ba4;
+  --discord-green: #23a559;
+  --discord-blurple: #5865f2;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--discord-dark);
+  color: var(--discord-text);
+  font-family: 'gg sans', 'Noto Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--discord-channel-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--discord-darker);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #1a1b1e;
+}
