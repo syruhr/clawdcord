@@ -4,35 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  /* Discord exact colors */
-  --background-primary: #313338;
-  --background-secondary: #2b2d31;
-  --background-secondary-alt: #232428;
-  --background-tertiary: #1e1f22;
-  --background-accent: #4e5058;
-  --background-floating: #111214;
-  --background-modifier-hover: rgba(78, 80, 88, 0.3);
-  --background-modifier-active: rgba(78, 80, 88, 0.48);
-  --background-modifier-selected: rgba(78, 80, 88, 0.6);
-  --channeltextarea-background: #383a40;
-  --text-normal: #dbdee1;
-  --text-muted: #949ba4;
-  --text-link: #00a8fc;
-  --header-primary: #f2f3f5;
-  --header-secondary: #b5bac1;
-  --interactive-normal: #b5bac1;
-  --interactive-hover: #dbdee1;
-  --interactive-active: #fff;
-  --interactive-muted: #4e5058;
-  --brand-500: #5865f2;
-  --green-360: #23a559;
-  --yellow-300: #f0b232;
-  --red-400: #f23f43;
-  --white-500: #ffffff;
-  --status-positive: #23a559;
-}
-
 * {
   box-sizing: border-box;
   margin: 0;
@@ -46,110 +17,122 @@ html, body {
 }
 
 body {
-  background-color: var(--background-tertiary);
-  color: var(--text-normal);
+  background-color: #313338;
+  color: #dbdee1;
   font-family: 'Noto Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 1.375;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Discord Scrollbar */
+/* Discord's exact scrollbar */
 ::-webkit-scrollbar {
   width: 16px;
   height: 16px;
 }
 
-::-webkit-scrollbar-corner {
-  background-color: transparent;
+::-webkit-scrollbar-track {
+  background-color: #2b2d31;
+  border-radius: 8px;
+  border: 4px solid transparent;
+  background-clip: padding-box;
 }
 
 ::-webkit-scrollbar-thumb {
   background-color: #1a1b1e;
-  border: 4px solid transparent;
   border-radius: 8px;
+  border: 4px solid transparent;
   background-clip: padding-box;
   min-height: 40px;
 }
 
-::-webkit-scrollbar-track {
-  background-color: #2b2d31;
-  border: 4px solid transparent;
-  border-radius: 8px;
-  background-clip: padding-box;
+::-webkit-scrollbar-thumb:hover {
+  background-color: #141517;
 }
 
-/* Thin scrollbar for specific areas */
+/* Thin scrollbar variant */
 .thin-scrollbar::-webkit-scrollbar {
   width: 8px;
+}
+
+.thin-scrollbar::-webkit-scrollbar-track {
+  border-width: 2px;
 }
 
 .thin-scrollbar::-webkit-scrollbar-thumb {
   border-width: 2px;
 }
 
-.thin-scrollbar::-webkit-scrollbar-track {
-  border-width: 2px;
-  margin-top: 8px;
+/* Discord-like transitions */
+.discord-transition {
+  transition-property: background-color, color, border-color, box-shadow, transform, border-radius;
+  transition-duration: 150ms;
+  transition-timing-function: ease-out;
 }
 
-/* Custom Animations */
-@keyframes messageSlideIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Server icon specific transition */
+.server-icon {
+  transition: border-radius 150ms ease-out, background-color 150ms ease-out;
 }
 
-@keyframes pulseGlow {
-  0%, 100% {
-    box-shadow: 0 0 0 0 rgba(88, 101, 242, 0.4);
-  }
-  50% {
-    box-shadow: 0 0 0 8px rgba(88, 101, 242, 0);
-  }
+.server-icon:hover {
+  border-radius: 16px;
 }
 
-@keyframes typingDot {
-  0%, 60%, 100% {
-    transform: translateY(0);
-  }
-  30% {
-    transform: translateY(-4px);
-  }
+.server-icon.active {
+  border-radius: 16px;
 }
 
-.animate-message-in {
-  animation: messageSlideIn 0.15s ease-out;
+/* Pill indicator animation */
+.pill-indicator {
+  transition: height 150ms ease-out, opacity 150ms ease-out;
 }
 
-.animate-pulse-glow {
-  animation: pulseGlow 2s infinite;
+/* Channel hover transition */
+.channel-item {
+  transition: background-color 100ms ease-out, color 100ms ease-out;
 }
 
-.animate-typing-dot {
-  animation: typingDot 1.4s ease-in-out infinite;
+/* Avatar styles */
+.avatar {
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  user-select: none;
 }
 
-.animate-typing-dot:nth-child(1) {
-  animation-delay: 0s;
+/* Status indicator */
+.status-indicator {
+  position: absolute;
+  border-radius: 50%;
+  border: 3px solid;
 }
 
-.animate-typing-dot:nth-child(2) {
-  animation-delay: 0.2s;
+/* Message hover */
+.message:hover {
+  background-color: rgba(2, 2, 2, 0.06);
 }
 
-.animate-typing-dot:nth-child(3) {
-  animation-delay: 0.4s;
+/* Button hover states */
+.icon-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background-color 100ms ease-out, color 100ms ease-out;
 }
 
-/* Focus states */
+.icon-button:hover {
+  background-color: rgba(79, 84, 92, 0.4);
+}
+
+/* Focus visible */
 :focus-visible {
-  outline: 2px solid var(--brand-500);
+  outline: 2px solid #5865f2;
   outline-offset: 2px;
 }
 
@@ -157,45 +140,7 @@ button:focus:not(:focus-visible) {
   outline: none;
 }
 
-/* Selection color */
+/* Selection */
 ::selection {
   background-color: rgba(88, 101, 242, 0.3);
-}
-
-/* Custom tooltip arrow fix */
-.tooltip-arrow {
-  position: absolute;
-  width: 0;
-  height: 0;
-}
-
-/* Smooth transitions for interactive elements */
-button, a {
-  transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
-}
-
-button:active {
-  transform: scale(0.98);
-}
-
-/* Message hover effect */
-.message-hover:hover {
-  background-color: rgba(2, 2, 2, 0.06);
-}
-
-/* Unread indicator pulse */
-@keyframes unreadPulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-.unread-pulse {
-  animation: unreadPulse 2s ease-in-out infinite;
 }
